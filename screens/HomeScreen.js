@@ -3,8 +3,13 @@ import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-web'
 import colors from '../assets/colors/colors'
 import { Featured, Events } from '../components/index.js'
+import { LinearGradient } from 'expo-linear-gradient'
 
 const sections = ['Featured', 'Events', 'PYQs', 'Placements', 'Research', 'Blogs', 'Internships'];
+
+const GradientLine = () => (
+  <LinearGradient style={styles.gradientLine} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} colors={["#ffffff00", "#ffffff", "#ffffff00"]} />
+)
 
 const HomeScreen = () => {
   const [currentSection, setCurrentSection] = useState('Events');
@@ -15,7 +20,7 @@ const HomeScreen = () => {
   }
 
   return (
-    <View style={styles.homeScreenWrapper}>
+    <LinearGradient colors={[colors.gradientDarkBlue1, colors.gradientDarkBlue2]} style={styles.homeScreenWrapper}>
       {/* TopBar */}
       <SafeAreaView style={styles.topBar}>
         <View style={styles.topBarLeft}>
@@ -24,6 +29,8 @@ const HomeScreen = () => {
         </View>
         <Image style={styles.topBarACMLogo} source={require('../assets/icons/MUJ ACM Chapter Icon.png')} />
       </SafeAreaView>
+
+      <GradientLine />
 
       {/* Navigation Pills */}
       <View>
@@ -45,16 +52,18 @@ const HomeScreen = () => {
         </ScrollView>
       </View>
 
+      <GradientLine />
+
       <View style={styles.mainSectionWrapper}>
         {
           currentSection === "Featured" ?
             <Featured /> :
-          currentSection === "Events" ?
-            <Events /> :
-            null
+            currentSection === "Events" ?
+              <Events /> :
+              null
         }
       </View>
-    </View>
+    </LinearGradient>
   )
 }
 
@@ -136,5 +145,10 @@ const styles = StyleSheet.create({
   mainSectionWrapper: {
     flex: 1,
     paddingHorizontal: 16,
+    // paddingTop: 10,
+  },
+  gradientLine: {
+    width: '100%',
+    height: 1,
   }
 })

@@ -2,9 +2,10 @@ import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'rea
 import React from 'react'
 import { EventsData } from '../data/data'
 import colors from '../assets/colors/colors'
+import { LinearGradient } from 'expo-linear-gradient'
 
 const CreateEventsCard = ({ item }) => (
-  <View style={styles.eventCardWrapper}>
+  <LinearGradient colors={["#ffffff10", "#ffffff01"]} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={styles.eventCardWrapper}>
     <Image source={item.image} style={styles.eventPoster} />
     <View style={styles.eventInfoWrapper}>
       <View style={styles.eventDateWrapper}>
@@ -24,7 +25,7 @@ const CreateEventsCard = ({ item }) => (
     <TouchableOpacity style={styles.registerNow}>
       <Text style={styles.registerNowText}>Register Now!</Text>
     </TouchableOpacity>
-  </View>
+  </LinearGradient>
 )
 
 const Events = () => {
