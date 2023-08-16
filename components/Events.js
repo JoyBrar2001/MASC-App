@@ -31,6 +31,7 @@ const CreateEventsCard = ({ item }) => (
 const Events = () => {
   return (
     <ScrollView vertical showsVerticalScrollIndicator={false} contentContainerStyle={styles.eventWrapper}>
+      <Text style={styles.eventsTitle}>Upcoming Events</Text>
       {EventsData.map((item, index) => (
         <CreateEventsCard item={item} key={index} />
       ))}
@@ -45,6 +46,14 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: 'column',
     gap: 20,
+    marginBottom: 20,
+  },
+  eventsTitle: {
+    color: colors.white,
+    fontSize: 30,
+    textAlign: 'center',
+    marginTop: 12,
+    fontFamily: 'Montserrat-Light'
   },
   eventCardWrapper: {
     backgroundColor: "#ffffff10",
@@ -83,6 +92,7 @@ const styles = StyleSheet.create({
   eventDateDate: {
     color: colors.white,
     fontSize: 32,
+    fontFamily: 'Montserrat-Bold',
   },
   eventDateMonth: {
     color: colors.white,
@@ -95,18 +105,22 @@ const styles = StyleSheet.create({
   eventName: {
     color: colors.white,
     fontSize: 32,
+    fontFamily: 'Montserrat-Bold'
   },
   eventVenue: {
     color: colors.white,
     fontSize: 16,
+    fontFamily: 'Montserrat-Regular'
   },
   eventTeam: {
     color: colors.white,
     fontSize: 16,
+    fontFamily: 'Montserrat-Regular'
   },
   eventDescription: {
     color: colors.white,
     fontSize: 12,
+    fontFamily: 'Montserrat-Light'
   },
   registerNow: {
     backgroundColor: colors.gradientLightBlue1,
@@ -120,5 +134,6 @@ const styles = StyleSheet.create({
     color: colors.white,
     textAlign: 'center',
     fontSize: 30,
+    fontFamily: 'Montserrat-SemiBold'
   }
 });

@@ -2,17 +2,17 @@ import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'rea
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-web'
 import colors from '../assets/colors/colors'
-import { Featured, Events } from '../components/index.js'
+import { Featured, Events, Blogs } from '../components/index.js'
 import { LinearGradient } from 'expo-linear-gradient'
 
-const sections = ['Featured', 'Events', 'PYQs', 'Placements', 'Research', 'Blogs', 'Internships'];
+const sections = ['Featured', 'Events', 'Blogs', 'PYQs', 'Placements', 'Research', 'Internships'];
 
 const GradientLine = () => (
   <LinearGradient style={styles.gradientLine} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} colors={["#ffffff00", "#ffffff", "#ffffff00"]} />
 )
 
 const HomeScreen = () => {
-  const [currentSection, setCurrentSection] = useState('Events');
+  const [currentSection, setCurrentSection] = useState('Blogs');
 
   const changeCurrentSection = (section) => {
     setCurrentSection(section)
@@ -58,9 +58,11 @@ const HomeScreen = () => {
         {
           currentSection === "Featured" ?
             <Featured /> :
-            currentSection === "Events" ?
-              <Events /> :
-              null
+          currentSection === "Events" ?
+            <Events /> :
+          currentSection === "Blogs" ?
+            <Blogs /> : 
+          null
         }
       </View>
     </LinearGradient>
@@ -96,6 +98,7 @@ const styles = StyleSheet.create({
   topBarText: {
     color: colors.white,
     fontSize: 20,
+    fontFamily: 'Montserrat-Light'
   },
   topBarACMLogo: {
     width: 40,
@@ -105,7 +108,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     gap: 6,
-    paddingLeft: 6,
+    paddingHorizontal: 6,
     marginVertical: 6,
   },
   sectionNavigatorItem: {
@@ -130,6 +133,7 @@ const styles = StyleSheet.create({
   },
   sectionNavigatorItemText: {
     color: colors.white,
+    fontFamily: 'Montserrat-Regular'
   },
   gradient: {
     width: 200,
