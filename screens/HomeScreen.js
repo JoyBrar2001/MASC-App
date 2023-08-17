@@ -73,7 +73,6 @@ export default HomeScreen
 const styles = StyleSheet.create({
   homeScreenWrapper: {
     flex: 1,
-    backgroundColor: colors.gradientDarkBlue1,
     paddingTop: 32,
   },
   topBar: {

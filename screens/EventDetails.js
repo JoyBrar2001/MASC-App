@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity, Dimensio
 import React from 'react';
 import colors from '../assets/colors/colors';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
 
 const width = Dimensions.get('window').width;
 
@@ -9,7 +10,7 @@ const GradientLine = () => (
   <LinearGradient style={styles.gradientLine} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} colors={["#ffffff00", "#ffffff", "#ffffff00"]} />
 );
 
-const EventDetails = ({ route, navigation, ...props }) => {
+const EventDetails = ({ route, navigation: { goBack }, ...props }) => {
   const { item } = route.params;
 
   return (
@@ -24,9 +25,16 @@ const EventDetails = ({ route, navigation, ...props }) => {
       </SafeAreaView>
 
       <GradientLine />
+      
+      <View style={styles.eventTitleTopWrapper}>
+        <Text style={styles.eventTitleTop}>{item.name}</Text>
+        <TouchableOpacity onPress={() => goBack()} style={styles.eventTitleTopIconWrapper}>
+          <Ionicons name="chevron-back" size={36} color="white" style={styles.eventTitleTopIcon} />
+        </TouchableOpacity>
+      </View>
 
       <View style={styles.mainWrapper}>
-      <LinearGradient
+        <LinearGradient
           colors={["#ffffff01", "#ffffff10"]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
@@ -122,6 +130,28 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
   },
+  eventTitleTopWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  eventTitleTopIconWrapper: {
+    position: 'absolute',
+    top: 16,
+    left: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  eventTitleTopIcon: {
+    
+  },
+  eventTitleTop: {
+    color: colors.white,
+    textAlign: 'center',
+    fontFamily: 'Montserrat-Light',
+    fontSize: 32,
+    marginTop: 12,
+    width: width*0.9,
+  },
   gradientLine: {
     height: 1,
     width: "100%",
@@ -140,6 +170,12 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     paddingHorizontal: 20,
   },
+  eventDetailsCardTop: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomStartRadius: 200,
+    borderBottomEndRadius: 200,
+  },
   eventDetailsImage: {
     width: width * 0.9,
     height: width * 0.9,
@@ -149,10 +185,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: colors.gradientLightBlue1,
     bottom: 0,
-    left: "50%",
     transform: [
-      { translateX: "-50%" },
-      { translateY: "50%" },
+      { translateX: 0 },
+      { translateY: 30, },
     ],
     paddingVertical: 12,
     paddingHorizontal: 24,
