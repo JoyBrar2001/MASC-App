@@ -5,6 +5,7 @@ const colors = {
     gradientDarkBlue2: "#00070F",
     gradientLightBlue1: "#1479FF",
     gradientLightBlue2: "#005CD5",
+    activeIconColor: "#0094FF",
 };
 
 export default colors;

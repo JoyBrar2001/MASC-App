@@ -1,8 +1,10 @@
 export const EventsData = [
   {
-    image: require("../assets/eventbanners/Datathon Banner.png"),
+    image: require("../assets/eventbanners/datathonBanner.png"),
+    imageSqaure: require("../assets/eventSquare/datathonSquare.png"),
     id: 0,
     name: "Datathon",
+    prizePool: "25,000",
     venue: "Hostel Mess",
     team: "1 to 4",
     date: 15,
@@ -11,9 +13,11 @@ export const EventsData = [
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet quos laboriosam necessitatibus voluptas vero reprehenderit, voluptatum veniam animi qui odio ipsum! Maxime, sequi voluptas. Et qui culpa fugiat quo quam?",
   },
   {
-    image: require("../assets/eventbanners/SIGFEST Banner.png"),
+    image: require("../assets/eventbanners/sigfestBanner.png"),
+    imageSqaure: require("../assets/eventSquare/sigfestSquare.png"),
     id: 1,
     name: "SIGFEST",
+    prizePool: "25,000",
     venue: "AB-1 304",
     team: "1 to 4",
     date: 23,
@@ -22,9 +26,11 @@ export const EventsData = [
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet quos laboriosam necessitatibus voluptas vero reprehenderit, voluptatum veniam animi qui odio ipsum! Maxime, sequi voluptas. Et qui culpa fugiat quo quam?",
   },
   {
-    image: require("../assets/eventbanners/Stock Market Banner.png"),
+    image: require("../assets/eventbanners/stockMarketBanner.png"),
+    imageSqaure: require("../assets/eventSquare/stockMarketShowdownSquare.png"),
     id: 2,
     name: "Stock Market Showdown",
+    prizePool: "25,000",
     venue: "Online",
     team: "1",
     date: 31,

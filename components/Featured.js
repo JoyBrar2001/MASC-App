@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
-import colors from '../assets/colors/colors'
-import { FeaturedTopPicksData } from '../data/data'
-import { LinearGradient } from 'expo-linear-gradient'
+import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
+import React from 'react';
+import colors from '../assets/colors/colors';
+import { FeaturedTopPicksData } from '../data/data';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
+import { useFonts } from 'expo-font';
 
 Feather.loadFont();
 
@@ -26,7 +27,7 @@ const CreateFeaturedTopPicksCard = ({ item }) => (
       <Feather name="arrow-up-right" size={18} color={colors.white} />
     </TouchableOpacity>
   </LinearGradient>
-)
+);
 
 const Featured = () => {
   return (
@@ -38,10 +39,10 @@ const Featured = () => {
         ))}
       </ScrollView>
     </ScrollView>
-  )
+  );
 }
 
-export default Featured
+export default Featured;
 
 const styles = StyleSheet.create({
   text: {
@@ -57,6 +58,7 @@ const styles = StyleSheet.create({
   featuredTopPicksWrapper: {
     flexDirection: 'row',
     gap: 10,
+    paddingHorizontal: 16,
   },
   featuredTopPicksCard: {
     width: 160,
@@ -75,8 +77,8 @@ const styles = StyleSheet.create({
   topPicksCardTitle: {
     color: colors.white,
     fontSize: 20,
-    fontFamily: 'Montserrat-SemiBold',
-    lineHeight: 22,
+    fontFamily: 'Montserrat-Medium',
+    lineHeight: 24,
     marginBottom: 10,
   },
   topPicksCardDescription: {
@@ -98,4 +100,4 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontFamily: 'Montserrat-SemiBold',
   },
-})
+});

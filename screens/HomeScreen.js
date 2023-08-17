@@ -1,6 +1,5 @@
-import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native'
+import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native'
 import React, { useState } from 'react'
-import { SafeAreaView } from 'react-native-web'
 import colors from '../assets/colors/colors'
 import { Featured, Events, Blogs } from '../components/index.js'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -11,8 +10,8 @@ const GradientLine = () => (
   <LinearGradient style={styles.gradientLine} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} colors={["#ffffff00", "#ffffff", "#ffffff00"]} />
 )
 
-const HomeScreen = () => {
-  const [currentSection, setCurrentSection] = useState('Blogs');
+const HomeScreen = ({ navigation }) => {
+  const [currentSection, setCurrentSection] = useState('Events');
 
   const changeCurrentSection = (section) => {
     setCurrentSection(section)
@@ -24,10 +23,10 @@ const HomeScreen = () => {
       {/* TopBar */}
       <SafeAreaView style={styles.topBar}>
         <View style={styles.topBarLeft}>
-          <Image style={styles.topBarProfileIcon} source={require('../assets/icons/Profile Picture.png')} />
+          <Image style={styles.topBarProfileIcon} source={require('../assets/icons/profilePicture.png')} />
           <Text style={styles.topBarText}>Hello, Joy</Text>
         </View>
-        <Image style={styles.topBarACMLogo} source={require('../assets/icons/MUJ ACM Chapter Icon.png')} />
+        <Image style={styles.topBarACMLogo} source={require('../assets/icons/mujAcmChapterIcon.png')} />
       </SafeAreaView>
 
       <GradientLine />
@@ -59,7 +58,7 @@ const HomeScreen = () => {
           currentSection === "Featured" ?
             <Featured /> :
           currentSection === "Events" ?
-            <Events /> :
+            <Events navigation={navigation} /> :
           currentSection === "Blogs" ?
             <Blogs /> : 
           null
@@ -75,6 +74,7 @@ const styles = StyleSheet.create({
   homeScreenWrapper: {
     flex: 1,
     backgroundColor: colors.gradientDarkBlue1,
+    paddingTop: 32,
   },
   topBar: {
     display: 'flex',
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   },
   mainSectionWrapper: {
     flex: 1,
-    paddingHorizontal: 16,
+    // paddingHorizontal: 16,
     // paddingTop: 10,
   },
   gradientLine: {

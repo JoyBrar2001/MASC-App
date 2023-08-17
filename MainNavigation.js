@@ -4,44 +4,74 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Entypo from 'react-native-vector-icons/Entypo'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import HomeScreen from './screens/HomeScreen';
 import Saved from './screens/Saved';
 import Profile from './screens/Profile';
 import Calendar from './screens/Calendar';
-import { useFonts } from 'expo-font'
+import * as Font from 'expo-font';
+import colors from './assets/colors/colors';
+import { BlurView } from 'expo-blur';
+import EventDetails from './screens/EventDetails';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
-  const [fontsLoaded] = useFonts({
-    'Montserrat-Thin': require('./assets/fonts/Montserrat-Thin.ttf'),
-    'Montserrat-ThinItalic': require('./assets/fonts/Montserrat-ThinItalic.ttf'),
-    'Montserrat-ExtraLight': require('./assets/fonts/Montserrat-ExtraLight.ttf'),
-    'Montserrat-ExtraLightItalic': require('./assets/fonts/Montserrat-ExtraLightItalic.ttf'),
-    'Montserrat-Light': require('./assets/fonts/Montserrat-Light.ttf'),
-    'Montserrat-LightItalic': require('./assets/fonts/Montserrat-LightItalic.ttf'),
-    'Montserrat-Regular': require('./assets/fonts/Montserrat-Regular.ttf'),
-    'Montserrat-Italic': require('./assets/fonts/Montserrat-Italic.ttf'),
-    'Montserrat-Medium': require('./assets/fonts/Montserrat-Medium.ttf'),
-    'Montserrat-MediumItalic': require('./assets/fonts/Montserrat-MediumItalic.ttf'),
-    'Montserrat-SemiBold': require('./assets/fonts/Montserrat-SemiBold.ttf'),
-    'Montserrat-SemiBoldItalic': require('./assets/fonts/Montserrat-SemiBoldItalic.ttf'),
-    'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
-    'Montserrat-BoldItalic': require('./assets/fonts/Montserrat-BoldItalic.ttf'),
-    'Montserrat-ExtraBold': require('./assets/fonts/Montserrat-ExtraBold.ttf'),
-    'Montserrat-ExtraBoldItalic': require('./assets/fonts/Montserrat-ExtraBoldItalic.ttf'),
-    'Montserrat-Black': require('./assets/fonts/Montserrat-Black.ttf'),
-    'Montserrat-BlackItalic': require('./assets/fonts/Montserrat-BlackItalic.ttf'),
-  });
+  const [fontsLoaded, setFontLoaded] = useState(false);
+
+  useEffect(() => {
+    Font.loadAsync({
+      'Montserrat-Thin': require('./assets/fonts/Montserrat-Thin.ttf'),
+      'Montserrat-ThinItalic': require('./assets/fonts/Montserrat-ThinItalic.ttf'),
+      'Montserrat-ExtraLight': require('./assets/fonts/Montserrat-ExtraLight.ttf'),
+      'Montserrat-ExtraLightItalic': require('./assets/fonts/Montserrat-ExtraLightItalic.ttf'),
+      'Montserrat-Light': require('./assets/fonts/Montserrat-Light.ttf'),
+      'Montserrat-LightItalic': require('./assets/fonts/Montserrat-LightItalic.ttf'),
+      'Montserrat-Regular': require('./assets/fonts/Montserrat-Regular.ttf'),
+      'Montserrat-Italic': require('./assets/fonts/Montserrat-Italic.ttf'),
+      'Montserrat-Medium': require('./assets/fonts/Montserrat-Medium.ttf'),
+      'Montserrat-MediumItalic': require('./assets/fonts/Montserrat-MediumItalic.ttf'),
+      'Montserrat-SemiBold': require('./assets/fonts/Montserrat-SemiBold.ttf'),
+      'Montserrat-SemiBoldItalic': require('./assets/fonts/Montserrat-SemiBoldItalic.ttf'),
+      'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
+      'Montserrat-BoldItalic': require('./assets/fonts/Montserrat-BoldItalic.ttf'),
+      'Montserrat-ExtraBold': require('./assets/fonts/Montserrat-ExtraBold.ttf'),
+      'Montserrat-ExtraBoldItalic': require('./assets/fonts/Montserrat-ExtraBoldItalic.ttf'),
+      'Montserrat-Black': require('./assets/fonts/Montserrat-Black.ttf'),
+      'Montserrat-BlackItalic': require('./assets/fonts/Montserrat-BlackItalic.ttf'),
+    })
+    .then(() => {
+      setFontLoaded(true)
+    });
+  }, []);
+
+  if(!fontsLoaded){
+    return null;
+  }
 
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarShowLabel: false,
+        tabBarStyle: {
+          position: 'absolute',
+          borderRadius: 20,
+          height: 50,
+          backgroundColor: "#00000099",
+        },
+        tabBarBackground: () => (
+          <BlurView tint='dark' intensity={20} style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 50,
+          }} />
+        ),
+        tabBarInactiveTintColor: colors.white,
+        tabBarActiveTintColor: colors.activeIconColor,
       }}
-      
     >
       <Tab.Screen
         name='Home'
@@ -59,9 +89,9 @@ const TabNavigator = () => {
         options={{
           tabBarIcon: ({ color }) => (
             <Entypo name="calendar" size={32} color={color} />
-            ),
-            headerShown: false,
-          }}
+          ),
+          headerShown: false,
+        }}
       />
       <Tab.Screen
         name='Liked'
@@ -91,9 +121,14 @@ const MainNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="TabNavigator"
+          component={ TabNavigator }
+          options={{ headerShown: false }}
+        />
         <Stack.Screen 
-          name="TabNavigator" 
-          component={TabNavigator} 
+          name="EventDetails" 
+          component={ EventDetails } 
           options={{headerShown: false}} 
         />
       </Stack.Navigator>
