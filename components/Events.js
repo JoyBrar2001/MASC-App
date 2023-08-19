@@ -30,8 +30,8 @@ const CreateEventsCard = ({ item, route, navigation }) => {
         <View style={styles.eventDateWrapper}>
           <View style={styles.eventDate}>
             <Text style={styles.eventDateDate}>{item.date}</Text>
-            <Text style={styles.eventDateMonth}>{item.month}</Text>
-            <Text style={styles.eventDateYear}>{item.day}</Text>
+            <Text style={styles.eventDateMonth}>{item.month.substring(0,3)}</Text>
+            <Text style={styles.eventDateYear}>{item.day.substring(0,3)}</Text>
           </View>
         </View>
         <View style={styles.eventDesc}>

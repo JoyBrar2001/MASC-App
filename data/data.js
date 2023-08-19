@@ -8,8 +8,8 @@ export const EventsData = [
     venue: "Hostel Mess",
     team: "1 to 4",
     date: 15,
-    month: "Aug",
-    day: "Fri",
+    month: "August",
+    day: "Friday",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet quos laboriosam necessitatibus voluptas vero reprehenderit, voluptatum veniam animi qui odio ipsum! Maxime, sequi voluptas. Et qui culpa fugiat quo quam?",
   },
   {
@@ -21,8 +21,8 @@ export const EventsData = [
     venue: "AB-1 304",
     team: "1 to 4",
     date: 23,
-    month: "Jul",
-    day: "Thu",
+    month: "July",
+    day: "Thursday",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet quos laboriosam necessitatibus voluptas vero reprehenderit, voluptatum veniam animi qui odio ipsum! Maxime, sequi voluptas. Et qui culpa fugiat quo quam?",
   },
   {
@@ -34,8 +34,8 @@ export const EventsData = [
     venue: "Online",
     team: "1",
     date: 31,
-    month: "Aug",
-    day: "Mon",
+    month: "August",
+    day: "Monday",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet quos laboriosam necessitatibus voluptas vero reprehenderit, voluptatum veniam animi qui odio ipsum! Maxime, sequi voluptas. Et qui culpa fugiat quo quam?",
   },
 ];

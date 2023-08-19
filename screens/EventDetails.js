@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity, Dimensio
 import React from 'react';
 import colors from '../assets/colors/colors';
 import { LinearGradient } from 'expo-linear-gradient';
+import { BlurView } from 'expo-blur';
 import { Ionicons } from '@expo/vector-icons';
 
 const width = Dimensions.get('window').width;
@@ -34,60 +35,24 @@ const EventDetails = ({ route, navigation: { goBack }, ...props }) => {
       </View>
 
       <View style={styles.mainWrapper}>
+        <Image source={item.imageSqaure} style={styles.eventSquareBanner} />
         <LinearGradient
-          colors={["#ffffff01", "#ffffff10"]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={styles.eventDetailsCardWrapper}
-        >
-          <View style={styles.eventDetailsCardTop}>
-            <Image source={item.imageSqaure} style={styles.eventDetailsImage} />
-            <View style={styles.eventTitleWrapper}>
-              <Text style={styles.eventTitle}>{item.name}</Text>
-            </View>
-          </View>
-
-          <View style={styles.eventDetailsCardBottom}>
-            <Text style={styles.eventPrizePool}>Prize Pool - {item.prizePool}</Text>
-          </View>
-
-        </LinearGradient>
-
-        {/* <View style={styles.eventDetailsCardWrapper}>
-        <LinearGradient
-          colors={["#ffffff10", "#ffffff01"]}
+          colors={["#ffffff11", "#ffffff01"]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.eventDetailsWrapper}
+          blurRadius={1}
         >
-          <Image source={item.image} style={styles.eventPoster} />
-          <View style={styles.eventInfoWrapper}>
-            <View style={styles.eventDateWrapper}>
-              <View style={styles.eventDate}>
-                <Text style={styles.eventDateDate}>{item.date}</Text>
-                <Text style={styles.eventDateMonth}>{item.month}</Text>
-                <Text style={styles.eventDateYear}>{item.day}</Text>
-              </View>
-            </View>
-            <View style={styles.eventDesc}>
-              <Text style={styles.eventName}>{item.name}</Text>
-              <Text style={styles.eventVenue}>Venue - {item.venue}</Text>
-              <Text style={styles.eventTeam}>Team - {item.team}</Text>
-              <Text style={styles.eventDescription}>{item.description}</Text>
-            </View>
-          </View>
-          <TouchableOpacity
-            style={styles.registerNow}
-            onPress={() => {
-              navigation.navigate('EventDetails', {
-                item: item,
-              })
-            }}
-          >
-            <Text style={styles.registerNowText}>Register Now!</Text>
+          <BlurView style={styles.eventDetailsInnerWrapper} intensity={12}>
+            <Text style={styles.eventDate}>{item.day}, {item.date} {item.month}</Text>
+            <Text style={styles.prizePool}>Prize Pool - Rs.{item.prizePool}</Text>
+            <Text style={styles.eventTeam}>Team Size - {item.team}</Text>
+            <Text style={styles.description}>About the event - {item.description}</Text>
+          </BlurView>
+          <TouchableOpacity style={styles.registerButton}>
+            <Text style={styles.registerNow}>Register Now !</Text>
           </TouchableOpacity>
         </LinearGradient>
-      </View> */}
       </View>
 
     </LinearGradient>
@@ -160,54 +125,60 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
   mainWrapper: {
-    padding: 20,
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginTop: 12,
   },
-  eventDetailsCardWrapper: {
+  eventSquareBanner: {
+    width: width*0.9,
+    height: width*0.9,
+    borderRadius: 16,
+  },
+  eventDetailsWrapper: {
+    width: width*0.8,
+    marginTop: -30,
+    borderRadius: 16,
+    overflow: 'hidden',
+  },
+  eventDetailsInnerWrapper: {
+    padding: 12,
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 10,
-    borderRadius: 15,
-    paddingHorizontal: 20,
+    gap: 6,
   },
-  eventDetailsCardTop: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderBottomStartRadius: 200,
-    borderBottomEndRadius: 200,
-  },
-  eventDetailsImage: {
-    width: width * 0.9,
-    height: width * 0.9,
-    borderRadius: 16,
-  },
-  eventTitleWrapper: {
-    position: 'absolute',
-    backgroundColor: colors.gradientLightBlue1,
-    bottom: 0,
-    transform: [
-      { translateX: 0 },
-      { translateY: 30, },
-    ],
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 16,
-  },
-  eventTitle: {
-    fontFamily: 'Montserrat-Bold',
+  eventDate: {
+    fontSize: 14,
+    fontFamily: 'Montserrat-Medium',
     color: colors.white,
-    fontSize: 32,
     textAlign: 'center',
   },
-  eventDetailsCardBottom: {
-    marginTop: 32,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  eventPrizePool: {
-    fontFamily: 'Montserrat-Regular',
+  prizePool: {
     fontSize: 20,
+    fontFamily: 'Montserrat-SemiBold', 
+    color: colors.white,
+    textAlign: 'center',
+  },
+  eventTeam: {
+    fontSize: 14,
+    fontFamily: 'Montserrat-Medium',
+    color: colors.white,
+    textAlign: 'center',
+  },
+  description: {
+    fontSize: 12,
+    fontFamily: 'Montserrat-Regular',
+    color: colors.white,
+    textAlign: 'center',
+    paddingHorizontal: 10,
+  },
+  registerButton: {
+    backgroundColor: colors.gradientLightBlue1,
+    width: width*0.8,
+    padding: 12,
+  },
+  registerNow: {
+    fontSize: 30,
+    fontFamily: 'Montserrat-SemiBold',
     color: colors.white,
     textAlign: 'center',
   },

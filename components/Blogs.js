@@ -5,7 +5,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Carousel from 'react-native-reanimated-carousel';
 import colors from '../assets/colors/colors';
 import { Feather } from '@expo/vector-icons';
-import { useFonts } from 'expo-font';
 
 const width = Dimensions.get('window').width;
 
