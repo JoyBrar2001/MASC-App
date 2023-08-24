@@ -1,18 +1,39 @@
-import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity, Dimensions } from 'react-native';
 import React from 'react';
 import colors from '../assets/colors/colors';
-import { FeaturedTopPicksData } from '../data/data';
+import { EventsData, FeaturedTopPicksData } from '../data/data';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 
 Feather.loadFont();
+const width = Dimensions.get('window').width;
 
+const CreateEventsCard = ({ item }) => (
+  <LinearGradient
+    colors={["#ffffff01", "#ffffff10"]}
+    start={{ x: 0, y: 0 }}
+    end={{ x: 1, y: 1 }}
+    style={styles.featuredEventsCard}
+  >
+    <Image source={item.image} style={styles.featuredEventImage} />
+
+    <View style={styles.featuredEventCardInfo}>
+      <Text style={styles.featuredEventTitle}>{item.name}</Text>
+      {/* <Text style={styles.topPicksCardDescription}>{item.description}</Text> */}
+    </View>
+
+    <TouchableOpacity style={styles.checkItOutWrapper}>
+      <Text style={styles.checkItOutText}>Register Now!</Text>
+      <Feather name="arrow-up-right" size={18} color={colors.white} />
+    </TouchableOpacity>
+  </LinearGradient>
+);
 const CreateFeaturedTopPicksCard = ({ item }) => (
-  <LinearGradient 
-    colors={["#ffffff01", "#ffffff10"]} 
-    start={{x: 0, y: 0}} 
-    end={{x: 1, y: 1}} 
+  <LinearGradient
+    colors={["#ffffff01", "#ffffff10"]}
+    start={{ x: 0, y: 0 }}
+    end={{ x: 1, y: 1 }}
     style={styles.featuredTopPicksCard}
   >
     <Image source={item.image} style={styles.topPicksCardImage} />
@@ -32,6 +53,12 @@ const CreateFeaturedTopPicksCard = ({ item }) => (
 const Featured = () => {
   return (
     <ScrollView vertical showsVerticalScrollIndicator={false}>
+      <Text style={styles.topPicksTitle}>Featured Events</Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.featuredTopPicksWrapper}>
+        {EventsData.map((item, index) => (
+          <CreateEventsCard item={item} key={index} />
+        ))}
+      </ScrollView>
       <Text style={styles.topPicksTitle}>Our Top Picks for you</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.featuredTopPicksWrapper}>
         {FeaturedTopPicksData.map((item, index) => (
@@ -55,6 +82,30 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 12,
   },
+
+  featuredEventsCard: {
+    width: width*0.8,
+    borderRadius: 15,
+    overflow: 'hidden',
+    flexDirection: 'column',
+  },
+  featuredEventImage: {
+    width: width*0.8,
+    height: 120,
+  },
+  featuredEventCardInfo: {
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+  },
+  featuredEventTitle: {
+    color: colors.white,
+    fontSize: 24,
+    fontFamily: 'Montserrat-SemiBold',
+  },
+  checkItOutWrapper: {
+    
+  },
+
   featuredTopPicksWrapper: {
     flexDirection: 'row',
     gap: 10,

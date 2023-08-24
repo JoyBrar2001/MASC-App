@@ -37,17 +37,19 @@ const EventDetails = ({ route, navigation: { goBack }, ...props }) => {
       <View style={styles.mainWrapper}>
         <Image source={item.imageSqaure} style={styles.eventSquareBanner} />
         <LinearGradient
-          colors={["#ffffff11", "#ffffff01"]}
+          colors={["#ffffff10", "#ffffff01"]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.eventDetailsWrapper}
           blurRadius={1}
         >
-          <BlurView style={styles.eventDetailsInnerWrapper} intensity={12}>
-            <Text style={styles.eventDate}>{item.day}, {item.date} {item.month}</Text>
-            <Text style={styles.prizePool}>Prize Pool - Rs.{item.prizePool}</Text>
-            <Text style={styles.eventTeam}>Team Size - {item.team}</Text>
-            <Text style={styles.description}>About the event - {item.description}</Text>
+          <BlurView style={styles.eventDetailsInnerWrapper} tint='dark' intensity={6}>
+            <View style={styles.eventTextWrapper}>
+              <Text style={styles.eventDate}>{item.day}, {item.date} {item.month}</Text>
+              <Text style={styles.prizePool}>Prize Pool - Rs.{item.prizePool}</Text>
+              <Text style={styles.eventTeam}>Team Size - {item.team}</Text>
+              <Text style={styles.description}>About the event - {item.description}</Text>
+            </View>
           </BlurView>
           <TouchableOpacity style={styles.registerButton}>
             <Text style={styles.registerNow}>Register Now !</Text>
@@ -128,7 +130,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginTop: 12,
+    marginTop: 16,
   },
   eventSquareBanner: {
     width: width*0.9,
@@ -136,19 +138,22 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   eventDetailsWrapper: {
+    backgroundColor: '#ffffff01',
     width: width*0.8,
     marginTop: -30,
     borderRadius: 16,
     overflow: 'hidden',
   },
   eventDetailsInnerWrapper: {
+  },
+  eventTextWrapper: {
     padding: 12,
     flexDirection: 'column',
     gap: 6,
   },
   eventDate: {
-    fontSize: 14,
-    fontFamily: 'Montserrat-Medium',
+    fontSize: 16,
+    fontFamily: 'Montserrat-Light',
     color: colors.white,
     textAlign: 'center',
   },
@@ -159,14 +164,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   eventTeam: {
-    fontSize: 14,
-    fontFamily: 'Montserrat-Medium',
+    fontSize: 16,
+    fontFamily: 'Montserrat-Light',
     color: colors.white,
     textAlign: 'center',
   },
   description: {
     fontSize: 12,
-    fontFamily: 'Montserrat-Regular',
+    fontFamily: 'Montserrat-ExtraLight',
     color: colors.white,
     textAlign: 'center',
     paddingHorizontal: 10,

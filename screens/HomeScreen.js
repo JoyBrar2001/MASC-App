@@ -11,7 +11,7 @@ const GradientLine = () => (
 )
 
 const HomeScreen = ({ navigation }) => {
-  const [currentSection, setCurrentSection] = useState('Events');
+  const [currentSection, setCurrentSection] = useState('Featured');
 
   const changeCurrentSection = (section) => {
     setCurrentSection(section)
