@@ -4,7 +4,6 @@ import colors from '../assets/colors/colors';
 import { EventsData, FeaturedTopPicksData } from '../data/data';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
-import { useFonts } from 'expo-font';
 
 Feather.loadFont();
 const width = Dimensions.get('window').width;
@@ -19,7 +18,7 @@ const CreateEventsCard = ({ item }) => (
     <Image source={item.image} style={styles.featuredEventImage} />
 
     <View style={styles.featuredEventCardInfo}>
-      <Text style={styles.featuredEventTitle}>{item.name}</Text>
+      <Text style={[styles.featuredEventTitle, { fontSize: item.name.length < 16 ? 24 : 20 }]}>{item.name}</Text>
       {/* <Text style={styles.topPicksCardDescription}>{item.description}</Text> */}
     </View>
 
@@ -29,6 +28,7 @@ const CreateEventsCard = ({ item }) => (
     </TouchableOpacity>
   </LinearGradient>
 );
+
 const CreateFeaturedTopPicksCard = ({ item }) => (
   <LinearGradient
     colors={["#ffffff01", "#ffffff10"]}
@@ -39,7 +39,9 @@ const CreateFeaturedTopPicksCard = ({ item }) => (
     <Image source={item.image} style={styles.topPicksCardImage} />
 
     <View style={styles.topPicksCardInfo}>
-      <Text style={styles.topPicksCardTitle}>{item.name}</Text>
+      <Text style={styles.topPicksCardTitle}>
+        {item.name}
+      </Text>
       {/* <Text style={styles.topPicksCardDescription}>{item.description}</Text> */}
     </View>
 
@@ -82,7 +84,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 12,
   },
-
   featuredEventsCard: {
     width: width*0.8,
     borderRadius: 15,
@@ -94,6 +95,8 @@ const styles = StyleSheet.create({
     height: 120,
   },
   featuredEventCardInfo: {
+    flex: 1,
+    justifyContent: 'center',
     paddingVertical: 8,
     paddingHorizontal: 16,
   },
@@ -101,11 +104,11 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 24,
     fontFamily: 'Montserrat-SemiBold',
+    marginVertical: 6,
   },
   checkItOutWrapper: {
     
   },
-
   featuredTopPicksWrapper: {
     flexDirection: 'row',
     gap: 10,
@@ -147,7 +150,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   checkItOutText: {
-    fontSize: 14,
     color: colors.white,
     fontFamily: 'Montserrat-SemiBold',
   },

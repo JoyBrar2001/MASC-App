@@ -78,3 +78,42 @@ export const FeaturedTopPicksData = [
     description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, aperiam. Molestiae deleniti ea aspernatur inventore voluptates quas nostrum. Harum, qui!",
   },
 ];
+
+export const ResearchData = [
+  {
+    image: require('../assets/researchImages/AIML.jpg'),
+    id: 0,
+    tags: ["AI", "ML", "Python"],
+    title: "Exploring AI world",
+  },
+  {
+    image: require('../assets/researchImages/Cloud.jpeg'),
+    id: 1,
+    tags: ["C#", "Cloud", "AWS", "Amazon"],
+    title: "Cloud Computing",
+  },
+  {
+    image: require('../assets/researchImages/React.jpeg'),
+    id: 2,
+    tags: ["HTML", "CSS", "React", "Web-Dev"],
+    title: "Exploring React Framework",
+  },
+  {
+    image: require('../assets/researchImages/AIML.jpg'),
+    id: 3,
+    tags: ["AI", "ML", "Python"],
+    title: "Exploring AI world",
+  },
+  {
+    image: require('../assets/researchImages/Cloud.jpeg'),
+    id: 4,
+    tags: ["C#", "Cloud", "AWS", "Amazon"],
+    title: "Cloud Computing",
+  },
+  {
+    image: require('../assets/researchImages/React.jpeg'),
+    id: 5,
+    tags: ["HTML", "CSS", "React", "Web-Dev"],
+    title: "Exploring React Framework",
+  },
+];

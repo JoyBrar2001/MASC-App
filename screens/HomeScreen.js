@@ -1,10 +1,10 @@
 import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native'
 import React, { useState } from 'react'
 import colors from '../assets/colors/colors'
-import { Featured, Events, Blogs } from '../components/index.js'
+import { Featured, Events, Blogs, Research } from '../components/index.js'
 import { LinearGradient } from 'expo-linear-gradient'
 
-const sections = ['Featured', 'Events', 'Blogs', 'PYQs', 'Placements', 'Research', 'Internships'];
+const sections = ['Featured', 'Events', 'Blogs', 'Research', 'PYQs', 'Placements', 'Internships'];
 
 const GradientLine = () => (
   <LinearGradient style={styles.gradientLine} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} colors={["#ffffff00", "#ffffff", "#ffffff00"]} />
@@ -61,6 +61,8 @@ const HomeScreen = ({ navigation }) => {
             <Events navigation={navigation} /> :
           currentSection === "Blogs" ?
             <Blogs /> : 
+          currentSection === "Research" ?
+            <Research /> : 
           null
         }
       </View>
