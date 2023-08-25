@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -57,8 +57,10 @@ const TabNavigator = () => {
         tabBarStyle: {
           position: 'absolute',
           borderRadius: 20,
-          height: 50,
+          height: 70,
           backgroundColor: "#00000099",
+          bottom: 0,
+          paddingTop: 10,
         },
         tabBarBackground: () => (
           <BlurView tint='dark' intensity={20} style={{
@@ -66,7 +68,8 @@ const TabNavigator = () => {
             top: 0,
             left: 0,
             right: 0,
-            height: 50,
+            bottom: 0,
+            height: 70,
           }} />
         ),
         tabBarInactiveTintColor: colors.white,

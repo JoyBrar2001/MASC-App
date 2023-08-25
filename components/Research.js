@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView, Image, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Image, Dimensions, TouchableOpacity, Platform } from 'react-native';
 import React from 'react';
 import colors from '../assets/colors/colors';
 import { ResearchData } from '../data/data';
@@ -38,6 +38,7 @@ const CreateResearchCard = ({ item }) => (
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={styles.tagWrapper}
+            key={index}
           >
             <Text style={styles.tagTitle}>{tag}</Text>
           </LinearGradient>
@@ -53,7 +54,6 @@ const CreateResearchCard = ({ item }) => (
 )
 
 const Research = () => {
-  console.log(ResearchRows)
   return (
     <ScrollView vertical showsVerticalScrollIndicator={false}>
       <Text style={styles.researchTitle}>Research Topics for you</Text>
@@ -130,8 +130,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     justifyContent: 'center',
     alignItems: 'center',
-    bottom: -12,
-    right: 12,
+    bottom: Platform.OS == "ios" ? 6 : -12,
+    right: Platform.OS == "ios" ? 6: 12,
     height: 32,
     width: 32,
     paddingTop: 2,

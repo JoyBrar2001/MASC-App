@@ -3,6 +3,7 @@ import Featured from "./Featured";
 import Blogs from "./Blogs";
 import GradientLine from "./GradientLine";
 import Research from "./Research";
+import Internships from "./Internships";
 
 export {
     Events,
@@ -10,4 +11,5 @@ export {
     Blogs,
     GradientLine,
     Research,
+    Internships,
 };
