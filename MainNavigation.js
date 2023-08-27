@@ -57,10 +57,10 @@ const TabNavigator = () => {
         tabBarStyle: {
           position: 'absolute',
           borderRadius: 20,
-          height: 70,
+          height: Platform.OS == "ios" ? 70 : 50,
           backgroundColor: "#00000099",
           bottom: 0,
-          paddingTop: 10,
+          paddingTop: Platform.OS == "ios" ? 10 : 0,
         },
         tabBarBackground: () => (
           <BlurView tint='dark' intensity={20} style={{
@@ -69,7 +69,7 @@ const TabNavigator = () => {
             left: 0,
             right: 0,
             bottom: 0,
-            height: 70,
+            height: Platform.OS == "ios" ? 70 : 50,
           }} />
         ),
         tabBarInactiveTintColor: colors.white,

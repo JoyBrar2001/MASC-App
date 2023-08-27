@@ -117,3 +117,39 @@ export const ResearchData = [
     title: "Exploring React Framework",
   },
 ];
+
+export const InternshipsData = [
+  {
+    image: require('../assets/internshipImages/IntelLogo.png'),
+    id: 0,
+    title: "Web Development",
+    company: "This and That Company pvt. ltd.",
+    technologiesRequired: ["React", "Tailwind", "Axios", "Git-Github"],
+    location: "Work From Home",
+    startDate: "In 2 months",
+    duration: "6 Months",
+    stipend: "Rs.5000/Month",
+  },
+  {
+    image: require('../assets/internshipImages/IntelLogo.png'),
+    id: 1,
+    title: "Cloud Computing",
+    company: "This and That Company pvt. ltd.",
+    technologiesRequired: ["Cloud", "AWS", "C#", "DSA"],
+    location: "Bangalore",
+    startDate: "Immediately",
+    duration: "6 Months",
+    stipend: "Rs.8000/Month",
+  },
+  {
+    image: require('../assets/internshipImages/IntelLogo.png'),
+    id: 2,
+    title: "ML Engineer",
+    company: "This and That Company pvt. ltd.",
+    technologiesRequired: ["Python", "ML", "Machine Learning", "Java"],
+    location: "Hybrid",
+    startDate: "Immediately",
+    duration: "6 Months",
+    stipend: "Unpaid",
+  },
+];
