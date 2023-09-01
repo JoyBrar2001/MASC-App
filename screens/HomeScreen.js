@@ -3,6 +3,10 @@ import React, { useState } from 'react'
 import colors from '../assets/colors/colors'
 import { Featured, Events, Blogs, Research, Internships } from '../components/index.js'
 import { LinearGradient } from 'expo-linear-gradient'
+import { createStackNavigator } from '@react-navigation/stack'
+import EventDetails from './EventDetails'
+
+const Stack = createStackNavigator();
 
 const sections = ['Featured', 'Events', 'Blogs', 'Research', 'Internships', 'PYQs', 'Placements'];
 
@@ -11,15 +15,19 @@ const GradientLine = () => (
 )
 
 const HomeScreen = ({ navigation }) => {
-  const [currentSection, setCurrentSection] = useState('Internships');
+  const [currentSection, setCurrentSection] = useState('Featured');
 
   const changeCurrentSection = (section) => {
     setCurrentSection(section)
-    // console.log(currentSection)
   }
 
   return (
-    <LinearGradient colors={[colors.gradientDarkBlue1, colors.gradientDarkBlue2]} style={styles.homeScreenWrapper}>
+    <LinearGradient
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      colors={[colors.gradientDarkBlue1, colors.gradientDarkBlue2]}
+      style={styles.homeScreenWrapper}
+    >
       {/* TopBar */}
       <SafeAreaView style={styles.topBar}>
         <View style={styles.topBarLeft}>
@@ -42,10 +50,20 @@ const HomeScreen = ({ navigation }) => {
           {sections.map((item, index) => (
             <TouchableOpacity
               key={index}
-              style={currentSection === item ? styles.sectionNavigatorItemSelected : styles.sectionNavigatorItem}
               onPress={() => changeCurrentSection(item)}
             >
-              <Text style={styles.sectionNavigatorItemText}>{item}</Text>
+              <LinearGradient
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                colors={
+                  currentSection === item ?
+                    [colors.gradientLightBlue1, colors.gradientLightBlue2] :
+                    ['#ffffff10', '#ffffff11']
+                }
+                style={styles.sectionNavigatorItem}
+              >
+                <Text style={styles.sectionNavigatorItemText}>{item}</Text>
+              </LinearGradient>
             </TouchableOpacity>
           ))}
         </ScrollView>
@@ -56,23 +74,32 @@ const HomeScreen = ({ navigation }) => {
       <View style={styles.mainSectionWrapper}>
         {
           currentSection === "Featured" ?
-            <Featured /> :
-          currentSection === "Events" ?
-            <Events navigation={navigation} /> :
-          currentSection === "Blogs" ?
-            <Blogs /> : 
-          currentSection === "Research" ?
-            <Research /> : 
-          currentSection === "Internships" ?
-            <Internships /> : 
-          null
+            <Featured navigation={navigation} /> :
+            currentSection === "Events" ?
+              <Events navigation={navigation} /> :
+              currentSection === "Blogs" ?
+                <Blogs /> :
+                currentSection === "Research" ?
+                  <Research /> :
+                  currentSection === "Internships" ?
+                    <Internships /> :
+                    null
         }
       </View>
     </LinearGradient>
   )
 }
 
-export default HomeScreen
+const HomeStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name='Home' component={HomeScreen} options={{ headerShown: false }} />
+      <Stack.Screen name='EventDetails' component={EventDetails} options={{ headerShown: false }} />
+    </Stack.Navigator>
+  )
+}
+
+export default HomeStack
 
 const styles = StyleSheet.create({
   homeScreenWrapper: {
@@ -117,23 +144,22 @@ const styles = StyleSheet.create({
   sectionNavigatorItem: {
     color: colors.white,
     height: 40,
-    backgroundColor: '#ffffff10',
     borderRadius: 20,
     paddingHorizontal: 15,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  sectionNavigatorItemSelected: {
-    color: colors.white,
-    height: 40,
-    backgroundColor: colors.gradientLightBlue1,
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+  // sectionNavigatorItemSelected: {
+  //   color: colors.white,
+  //   height: 40,
+  //   backgroundColor: colors.gradientLightBlue1,
+  //   borderRadius: 20,
+  //   paddingHorizontal: 15,
+  //   display: 'flex',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  // },
   sectionNavigatorItemText: {
     color: colors.white,
     fontFamily: 'Montserrat-Regular'

@@ -4,27 +4,50 @@ import colors from '../assets/colors/colors';
 import { EventsData, FeaturedTopPicksData } from '../data/data';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
+import { BlurView } from 'expo-blur';
 
 Feather.loadFont();
 const width = Dimensions.get('window').width;
 
-const CreateEventsCard = ({ item }) => (
+const CreateEventsCard = ({ item, navigation }) => (
   <LinearGradient
     colors={["#ffffff01", "#ffffff10"]}
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}
-    style={styles.featuredEventsCard}
   >
-    <Image source={item.image} style={styles.featuredEventImage} />
+    <TouchableOpacity
+      style={styles.featuredEventsCard}
+      onPress={() => {
+        navigation.navigate('EventDetails', {
+          item: item,
+        })
+      }}
+    >
 
-    <View style={styles.featuredEventCardInfo}>
-      <Text style={[styles.featuredEventTitle, { fontSize: item.name.length < 16 ? 24 : 20 }]}>{item.name}</Text>
-      {/* <Text style={styles.topPicksCardDescription}>{item.description}</Text> */}
-    </View>
+      <Image source={item.image} style={styles.featuredEventImage} />
 
-    <TouchableOpacity style={styles.checkItOutWrapper}>
-      <Text style={styles.checkItOutText}>Register Now!</Text>
-      <Feather name="arrow-up-right" size={18} color={colors.white} />
+      <View style={styles.featuredEventCardInfo}>
+        <Text style={[styles.featuredEventTitle, { fontSize: item.name.length < 16 ? 24 : 20 }]}>{item.name}</Text>
+        {/* <Text style={styles.topPicksCardDescription}>{item.description}</Text> */}
+      </View>
+
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('EventDetails', {
+            item: item,
+          })
+        }}
+      >
+        <LinearGradient
+          colors={[colors.gradientLightBlue1, colors.gradientLightBlue2]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.checkItOutWrapper}
+        >
+          <Text style={styles.checkItOutText}>Register Now!</Text>
+          <Feather name="arrow-up-right" size={18} color={colors.white} />
+        </LinearGradient>
+      </TouchableOpacity>
     </TouchableOpacity>
   </LinearGradient>
 );
@@ -52,13 +75,13 @@ const CreateFeaturedTopPicksCard = ({ item }) => (
   </LinearGradient>
 );
 
-const Featured = () => {
+const Featured = ({ route, navigation }) => {
   return (
     <ScrollView vertical showsVerticalScrollIndicator={false}>
       <Text style={styles.topPicksTitle}>Featured Events</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.featuredTopPicksWrapper}>
         {EventsData.map((item, index) => (
-          <CreateEventsCard item={item} key={index} />
+          <CreateEventsCard item={item} key={index} navigation={navigation} />
         ))}
       </ScrollView>
       <Text style={styles.topPicksTitle}>Our Top Picks for you</Text>
@@ -85,13 +108,13 @@ const styles = StyleSheet.create({
     marginVertical: 12,
   },
   featuredEventsCard: {
-    width: width*0.8,
+    width: width * 0.8,
     borderRadius: 15,
     overflow: 'hidden',
     flexDirection: 'column',
   },
   featuredEventImage: {
-    width: width*0.8,
+    width: width * 0.8,
     height: 120,
   },
   featuredEventCardInfo: {
@@ -107,7 +130,7 @@ const styles = StyleSheet.create({
     marginVertical: 6,
   },
   checkItOutWrapper: {
-    
+
   },
   featuredTopPicksWrapper: {
     flexDirection: 'row',

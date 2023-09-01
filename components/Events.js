@@ -20,42 +20,56 @@ const CreateEventsCard = ({ item, route, navigation }) => {
       colors={["#ffffff10", "#ffffff01"]}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
-      style={[
-        styles.eventCardWrapper,
-        { marginBottom: item.id === EventsData.length - 1 ? 80 : 0 },
-      ]}
     >
-      <Image source={item.image} style={styles.eventPoster} />
-      <View style={styles.eventInfoWrapper}>
-        <View style={styles.eventDateWrapper}>
-          <View style={styles.eventDate}>
-            <Text style={styles.eventDateDate}>{item.date}</Text>
-            <Text style={styles.eventDateMonth}>{item.month.substring(0,3)}</Text>
-            <Text style={styles.eventDateYear}>{item.day.substring(0,3)}</Text>
-          </View>
-        </View>
-        <View style={styles.eventDesc}>
-          <Text style={styles.eventName}>{item.name}</Text>
-          <Text style={styles.eventVenue}>Venue - {item.venue}</Text>
-          <Text style={styles.eventTeam}>Team - {item.team}</Text>
-          <Text style={styles.eventDescription}>{truncateDescription(item.description)}</Text>
-          {item.description.length > 200 &&
-            <View style={styles.seeMoreWrapper}>
-              <Text style={styles.seeMoreText}>...see more</Text>
-              <Feather name="arrow-up-right" size={20} color={colors.white} />
-            </View>
-          }
-        </View>
-      </View>
       <TouchableOpacity
-        style={styles.registerNow}
+        style={[
+          styles.eventCardWrapper,
+          { marginBottom: item.id === EventsData.length - 1 ? 80 : 0 },
+        ]}
         onPress={() => {
           navigation.navigate('EventDetails', {
             item: item,
           })
         }}
       >
-        <Text style={styles.registerNowText}>Register Now!</Text>
+        <Image source={item.image} style={styles.eventPoster} />
+        <View style={styles.eventInfoWrapper}>
+          <View style={styles.eventDateWrapper}>
+            <View style={styles.eventDate}>
+              <Text style={styles.eventDateDate}>{item.date}</Text>
+              <Text style={styles.eventDateMonth}>{item.month.substring(0, 3)}</Text>
+              <Text style={styles.eventDateYear}>{item.day.substring(0, 3)}</Text>
+            </View>
+          </View>
+          <View style={styles.eventDesc}>
+            <Text style={styles.eventName}>{item.name}</Text>
+            <Text style={styles.eventVenue}>Venue - {item.venue}</Text>
+            <Text style={styles.eventTeam}>Team - {item.team}</Text>
+            <Text style={styles.eventDescription}>{truncateDescription(item.description)}</Text>
+            {item.description.length > 200 &&
+              <View style={styles.seeMoreWrapper}>
+                <Text style={styles.seeMoreText}>...see more</Text>
+                <Feather name="arrow-up-right" size={20} color={colors.white} />
+              </View>
+            }
+          </View>
+        </View>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('EventDetails', {
+              item: item,
+            })
+          }}
+        >
+          <LinearGradient
+            colors={[ colors.gradientLightBlue1, colors.gradientLightBlue2 ]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.registerNow}
+          >
+            <Text style={styles.registerNowText}>Register Now!</Text>
+          </LinearGradient>
+        </TouchableOpacity>
       </TouchableOpacity>
     </LinearGradient>
   );
@@ -177,7 +191,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat-SemiBold',
   },
   registerNow: {
-    backgroundColor: colors.gradientLightBlue1,
+    // backgroundColor: colors.gradientLightBlue1,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 15,

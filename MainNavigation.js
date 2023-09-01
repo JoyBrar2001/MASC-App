@@ -5,14 +5,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Entypo from 'react-native-vector-icons/Entypo'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import React, { useEffect, useState } from 'react';
-import HomeScreen from './screens/HomeScreen';
 import Saved from './screens/Saved';
 import Profile from './screens/Profile';
 import Calendar from './screens/Calendar';
 import * as Font from 'expo-font';
 import colors from './assets/colors/colors';
 import { BlurView } from 'expo-blur';
-import EventDetails from './screens/EventDetails';
+import HomeStack from './screens/HomeScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -77,8 +76,8 @@ const TabNavigator = () => {
       }}
     >
       <Tab.Screen
-        name='Home'
-        component={HomeScreen}
+        name='HomeStack'
+        component={HomeStack}
         options={{
           tabBarIcon: ({ color }) => (
             <Entypo name='home' size={32} color={color} />
@@ -129,11 +128,11 @@ const MainNavigation = () => {
           component={ TabNavigator }
           options={{ headerShown: false }}
         />
-        <Stack.Screen 
+        {/* <Stack.Screen 
           name="EventDetails" 
           component={ EventDetails } 
           options={{headerShown: false}} 
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
