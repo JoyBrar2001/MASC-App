@@ -176,3 +176,42 @@ export const FoodTopPicksData = [
     description: "Let's Go Live pastas now at only 160/-",
   },
 ];
+
+export const RestaurantData = [
+  {
+    image: require('../assets/restaurantLogos/burgerKing.png'),
+    id: 0,
+    name: 'Burger King',
+    price: 4,
+    tags: ['Burger', 'Fast Food', 'High Protein', 'Meal Deals', 'Pastas', "Indian"],
+    location: 'G4 Entrance',
+    time: '30 Mins'
+  },
+  {
+    image: require('../assets/restaurantLogos/kfc.png'),
+    id: 1,
+    name: 'KFC',
+    price: 3,
+    tags: ['Burger', 'Smoothies', 'Desserts', 'Meal Deals'],
+    location: 'AB1 Mess',
+    time: '15 Mins'
+  },
+  {
+    image: require('../assets/restaurantLogos/mcDonalds.png'),
+    id: 2,
+    name: 'McDonalds',
+    price: 5,
+    tags: ['Burger', 'Pizza', 'Pastas', 'Meal Deals'],
+    location: 'B4 Boys Block',
+    time: '10 Mins'
+  },
+  {
+    image: require('../assets/restaurantLogos/subway.png'),
+    id: 3,
+    name: 'Subway',
+    price: 2,
+    tags: ['Burger', 'Fast Food', 'High Calorie', 'Low Fat', 'Pizza'],
+    location: 'Academic Block Ground Floor',
+    time: '20 Mins'
+  },
+];
