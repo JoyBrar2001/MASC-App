@@ -4,7 +4,6 @@ import colors from '../assets/colors/colors';
 import { EventsData, FeaturedTopPicksData } from '../data/data';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
-import { BlurView } from 'expo-blur';
 
 Feather.loadFont();
 const width = Dimensions.get('window').width;

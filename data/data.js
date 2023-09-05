@@ -153,3 +153,26 @@ export const InternshipsData = [
     stipend: "Unpaid",
   },
 ];
+
+export const FoodTopPicksData = [
+  {
+    image: require('../assets/foodImages/burgers.jpg'),
+    id: 0,
+    description: "Buy 2 get 1 free on all burgers at Burger Farm",
+  },
+  {
+    image: require('../assets/foodImages/Hotdogs.jpeg'),
+    id: 1,
+    description: "25% off on all HotDogs",
+  },
+  {
+    image: require('../assets/foodImages/mainCourse.jpg'),
+    id: 2,
+    description: "Tandoor introduces new Non Veg Thali",
+  },
+  {
+    image: require('../assets/foodImages/Pasta.jpeg'),
+    id: 3,
+    description: "Let's Go Live pastas now at only 160/-",
+  },
+];

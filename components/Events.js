@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
   },
   eventCardWrapper: {
     backgroundColor: "#ffffff10",
+    overflow: 'hidden',
     color: colors.white,
     borderRadius: 15,
     paddingVertical: 20,
@@ -204,5 +205,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 30,
     fontFamily: 'Montserrat-SemiBold'
-  }
+  },
+
+  
 });

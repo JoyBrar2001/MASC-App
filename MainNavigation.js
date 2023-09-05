@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, Platform } from 'react-native';
+import { Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Entypo from 'react-native-vector-icons/Entypo'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import React, { useEffect, useState } from 'react';
 import Saved from './screens/Saved';
 import Profile from './screens/Profile';
@@ -12,9 +13,14 @@ import * as Font from 'expo-font';
 import colors from './assets/colors/colors';
 import { BlurView } from 'expo-blur';
 import HomeStack from './screens/HomeScreen';
+import FoodDelivery from './screens/FoodDelivery';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+Entypo.loadFont();
+Ionicons.loadFont();
+MaterialCommunityIcons.loadFont();
 
 const TabNavigator = () => {
   const [fontsLoaded, setFontLoaded] = useState(false);
@@ -96,6 +102,16 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
+        name='FoodDelivery'
+        component={FoodDelivery}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="fast-food" size={32} color={color} />
+          ),
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
         name='Liked'
         component={Saved}
         options={{
@@ -139,5 +155,3 @@ const MainNavigation = () => {
 }
 
 export default MainNavigation;
-
-const styles = StyleSheet.create({});
